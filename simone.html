@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tennis - Simone</title>
+   <script>
+     function getPercentage(value, total){
+       const percentage = (value/total)*100;
+       return percentage.toFixed(2)+'%';
+     }
+    window.onload = function() {
+      const wins = 1;
+      const draws = 1;
+      const loses = 1;
+      const total = wins + draws + loses;
+      document.getElementById("wins").innerHTML = `${wins} (${getPercentage(wins, total)}).`;
+      document.getElementById("draws").innerHTML = `${draws} (${getPercentage(draws, total)}).`;
+      document.getElementById("loses").innerHTML = `${wins} (${getPercentage(loses, total)}).`;
+    };
+  </script>
+</head>
+<body>
+  <img src="simone.png" alt="Simone">
+    <div>
+      <span><b>Vittorie: </b></span><span id="wins"></span>
+    </div>
+    <div>
+    <span><b>Pareggi: </b></span><span id="draws"></span>
+      </div>
+  <div>
+    <span><b>Sconfitte: </b></span><span id="loses"></span>
+  </div>
+</body>
+</html>
