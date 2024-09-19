@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tennis - Matteo</title>
+  <link rel="stylesheet" href="styles.css"> </head>
+   <script>
+     function getPercentage(value, total){
+       const percentage = (value/total)*100;
+       return percentage.toFixed(2)+'%';
+     }
+    window.onload = function() {
+      const wins = 5;
+      const draws = 1;
+      const loses = 1;
+      const total = wins + draws + loses;
+      document.getElementById("wins").innerHTML = `${wins} (${getPercentage(wins, total)}).`;
+      document.getElementById("draws").innerHTML = `${draws} (${getPercentage(draws, total)}).`;
+      document.getElementById("loses").innerHTML = `${wins} (${getPercentage(loses, total)}).`;
+    };
+  </script>
+</head>
+<body>
+  <img src="matteo.png" alt="Matteo">
+  <div class="wrapper">
+    <div>
+      <b>Vittorie: </b><text id="wins"></text>
+    </div>
+    <div>
+      <b>Pareggi: </b><text id="draws"></text>
+    </div>
+    <div >
+      <b>Sconfitte: </b><text id="loses"></text>
+    </div>
+  </div>
+</body>
+</html>
