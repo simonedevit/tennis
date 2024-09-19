@@ -1,9 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Image Example</title>
+  <title>Tennis - Simone</title>
+   <script>
+    window.onload = function() {
+      const wins = 1;
+      const draws = 1;
+      const loses = 1;
+      const total = wins + draws + loses;
+      document.getElementById("win").innerHTML = `${wins} (${total/wins}%)`;
+    };
+  </script>
 </head>
 <body>
   <img src="simone.png" alt="Simone">
+  <div>
+    <b>Vittorie: </b><p id="win"></p>.
+    <b>Pareggi: </b><p id="draws"></p>.
+    <b>Sconfitte: </b><p id="loses"></p>.
+  </div>
 </body>
 </html>
