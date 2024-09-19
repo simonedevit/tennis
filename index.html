@@ -8,14 +8,20 @@
       const draws = 1;
       const loses = 1;
       const total = wins + draws + loses;
-      document.getElementById("win").innerHTML = `${wins} (${total/wins}%).`;
+      document.getElementById("wins").innerHTML = `${wins} (${total/wins}%).`;
     };
   </script>
 </head>
 <body>
   <img src="simone.png" alt="Simone">
-    <span><b>Vittorie: </b></span><span id="wins"></span>
+    <div>
+      <span><b>Vittorie: </b></span><span id="wins"></span>
+    </div>
+    <div>
     <span><b>Pareggi: </b></span><span id="draws"></span>
+      </div>
+  <div>
     <span><b>Sconfitte: </b></span><span id="loses"></span>
+  </div>
 </body>
 </html>
