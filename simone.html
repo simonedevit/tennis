@@ -9,9 +9,9 @@
        return percentage.toFixed(2)+'%';
      }
     window.onload = function() {
-      const wins = 1;
-      const draws = 1;
-      const loses = 5;
+      const wins = 0;
+      const draws = 0;
+      const loses = 1;
       const total = wins + draws + loses;
       document.getElementById("wins").innerHTML = `${wins} (${getPercentage(wins, total)}).`;
       document.getElementById("draws").innerHTML = `${draws} (${getPercentage(draws, total)}).`;
