@@ -17,7 +17,7 @@ function setInfo(isSimone) {
     document.getElementById("loses").innerHTML = `${loses} (${getPercentage(loses, TOTAL)}).`;
 };
 
-function createRadarChart() {
+function createRadarChart(isSimone) {
     var options = {
         fill: {
             opacity: 0.5,
@@ -30,7 +30,7 @@ function createRadarChart() {
         },
         series: [{
             name: 'sales',
-            data: [63, 45, 79, 74, 50, 87]
+            data: isSimone ? [69, 45, 79, 74, 50, 87] : [81, 55, 72, 52, 65, 77]
         }],
         yaxis: {
             show: false
