@@ -54,5 +54,5 @@ function createRadarChart(isSimone) {
 
 function init(isSimone) {
     setInfo(isSimone);
-    createRadarChart();
+    createRadarChart(isSimone);
 }
