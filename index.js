@@ -26,6 +26,8 @@ function createRadarChart(isSimone) {
             size: 0
         },
         chart: {
+            width: '100%',
+            height: '100%',
             type: 'radar'
         },
         series: [{
