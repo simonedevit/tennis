@@ -8,26 +8,21 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="index.js"></script>
 <script>
-  window.onload = () => init(true);
+  window.onload = () => init(false);
 </script>
 </head>
 
 <body>
   <img src="simone.png" alt="Simone">
   <div class="wrapper">
-    <div>
-      <b>Vittorie: </b><text id="wins"></text>
-    </div>
-    <div class="info">6-0, 6-6(TB: 4,7), 3-6</div>
-    <div>
-      <b>Pareggi: </b><text id="draws"></text>
-    </div>
-    <div>
-      <b>Sconfitte: </b><text id="loses"></text>
-      <div class="info">6-1, 6-3</div>
-    </div>
   </div>
-  <div id="chart"></div>
+  <h4>STORICO PARTITE</h4>
+  <div id="pie-chart"></div>
+  <ul id="wins" class="info-container"></ul>
+  <ul id="draws" class="info-container" style="display: none;"></ul>
+  <ul id="loses" class="info-container" style="display: none;"></ul>
+  <h4>SKILLS</h4>
+  <div id="radar-chart"></div>
 </body>
 
 </html>
