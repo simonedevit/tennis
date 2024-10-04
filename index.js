@@ -14,7 +14,7 @@ const matches = [
     },
     {
         date: "30/09/2024",
-        sets: [{ result: [6, 1], tieBreak: false }, { result: [6, 3], tieBreak: [4, 7] }],
+        sets: [{ result: [6, 1], tieBreak: false }, { result: [6, 3], tieBreak: false }],
         duration: "01:25:58",
         kcal: 1097
     },
