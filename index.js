@@ -127,6 +127,9 @@ function showMatchesInfo(seriesIndex){
 function createPieChart(...args) {
     const [wins, draws, loses] = args;
     const options = {
+        fill: {
+            opacity: 0.95,
+        },
         colors: ['#4CAF50', '#9E9E9E', '#F44336'],
         series: [wins, draws, loses],
         chart: {
@@ -160,6 +163,9 @@ function createPieChart(...args) {
             }
         },
         labels: ['VITTORIE', 'PAREGGI', 'SCONFITTE'],
+        tooltip: {
+            enabled: false
+        }
     };
 
     new ApexCharts(document.getElementById("pie-chart"), options).render();
@@ -168,7 +174,7 @@ function createPieChart(...args) {
 function createRadarChart(isPlayer1) {
     const options = {
         fill: {
-            opacity: 0.5,
+            opacity: 0.2,
         },
         markers: {
             size: 0
