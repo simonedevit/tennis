@@ -18,6 +18,12 @@ const matches = [
         duration: "01:25:58",
         kcal: 1097
     },
+    {
+        date: "30/09/2024",
+        sets: [{ result: [6, 3], tieBreak: false }, { result: [4, 6], tieBreak: false }, { result: [6, 2], tieBreak: false }],
+        duration: "02:09:34",
+        kcal: 1375
+    },
 ];
 
 function getSetsScore(sets) {
@@ -82,8 +88,8 @@ function getInfo(isPlayer1) {
     return percentage.toFixed(2) + '%';
 }*/
 
-function createMatchInfo(score){
-    const li = document.createElement("li"); 
+function createMatchInfo(score) {
+    const li = document.createElement("li");
     li.className = "info";
     li.textContent = score;
     return li;
@@ -104,8 +110,8 @@ function setInfo(wins, draws, loses) {
     })
 };
 
-function showMatchesInfo(seriesIndex){
-    switch(seriesIndex){
+function showMatchesInfo(seriesIndex) {
+    switch (seriesIndex) {
         case 0:
             document.getElementById("wins").style.display = "flex";
             document.getElementById("draws").style.display = "none";
@@ -135,22 +141,32 @@ function createPieChart(...args) {
         chart: {
             type: 'pie',
             width: '100%',
+            offsetY: -50,
             events: {
                 legendClick: function (chartContext, seriesIndex, opts) {
                     showMatchesInfo(seriesIndex);
                 },
-                dataPointSelection: function(event, chartContext, config) {
-                    showMatchesInfo(config.dataPointIndex)
+                dataPointSelection: function (event, chartContext, config) {
+                    setTimeout(() => {
+                        showMatchesInfo(config.dataPointIndex)
+                    }, 10);
+                }
+            }
+        },
+        plotOptions: {
+            pie: {
+                dataLabels: {
+                    offset: -100,
                 }
             }
         },
         dataLabels: {
             textAnchor: 'end',
             formatter: (val, opts) => {
-                return [args[opts.seriesIndex], `(${val.toFixed(2)}%)`]
+                return [args[opts.seriesIndex], `(${val.toFixed(0)}%)`]
             },
             style: {
-                fontSize: '50px',
+                fontSize: '70px',
             },
         },
         legend: {
@@ -180,8 +196,12 @@ function createRadarChart(isPlayer1) {
             size: 0
         },
         chart: {
+            toolbar: {
+                show: false
+            },
             type: 'radar',
             width: '100%',
+            height: '900px',
             offsetY: -100
         },
         series: [{
@@ -196,7 +216,7 @@ function createRadarChart(isPlayer1) {
             labels: {
                 show: true,
                 style: {
-                    colors: ["#000","#000","#000","#000","#000","#000"],
+                    colors: ["#000", "#000", "#000", "#000", "#000", "#000"],
                     fontSize: "35px",
                     fontFamily: 'Arial'
                 }
@@ -204,13 +224,72 @@ function createRadarChart(isPlayer1) {
         },
     }
     new ApexCharts(document.getElementById("radar-chart"), options).render();
+}
 
+function createMultiLineChart() {
+
+    const options = {
+        series: [
+            { name: "MATTEO", data: [{ x: '19/09/2024', y: 0 }, { x: '23/09/2024', y: 0 }, { x: '30/09/2024', y: 1 }, { x: '10/04/2024', y: 2 }] },
+            { name: "SIMONE", data: [{ x: '19/09/2024', y: 0 }, { x: '23/09/2024', y: 1 }, { x: '30/09/2024', y: 1 }, { x: '10/04/2024', y: 1 }] }
+
+        ],
+        yaxis: {
+            stepSize: 1,
+            labels: {
+                style: {
+                    fontSize: '30px'
+                }
+            },
+        },
+        xaxis: {
+            //type: 'datetime',
+            labels: {
+                format: 'dd/MM',
+                style: {
+                    fontSize: '30px'
+                }
+            },
+        },
+        chart: {
+            type: 'line',
+            zoom: {
+                enabled: false
+            },
+            toolbar: false
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'straight'
+        },
+        grid: {
+            row: {
+                colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                opacity: 0.5
+            },
+        },
+        legend: {
+            offsetY: 10,
+            position: 'bottom',
+            fontSize: '40px',
+            markers: {
+                size: 20,
+                offsetX: 0,
+            }
+        },
+    };
+
+    new ApexCharts(document.getElementById("multiline-chart"), options).render();
 }
 
 function init(isPlayer1) {
     const [wins, draws, loses] = getInfo(isPlayer1);
+    console.log(wins, draws, loses);
     const total = matches.length;
     setInfo(wins, draws, loses);
     createPieChart(wins.length, draws.length, loses.length);
     createRadarChart(isPlayer1);
+    createMultiLineChart();
 }
