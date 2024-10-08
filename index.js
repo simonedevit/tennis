@@ -19,10 +19,16 @@ const matches = [
         kcal: 1097
     },
     {
-        date: "30/09/2024",
+        date: "04/10/2024",
         sets: [{ result: [6, 3], tieBreak: false }, { result: [4, 6], tieBreak: false }, { result: [6, 2], tieBreak: false }],
         duration: "02:09:34",
         kcal: 1375
+    },
+    {
+        date: "07/10/2024",
+        sets: [{ result: [3, 6], tieBreak: false }, { result: [3, 6], tieBreak: false }],
+        duration: "01:46:15",
+        kcal: 1016
     },
 ];
 
