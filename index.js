@@ -236,8 +236,8 @@ function createMultiLineChart() {
 
     const options = {
         series: [
-            { name: "MATTEO", data: [{ x: '19/09/2024', y: 0 }, { x: '23/09/2024', y: 0 }, { x: '30/09/2024', y: 1 }, { x: '10/04/2024', y: 2 }] },
-            { name: "SIMONE", data: [{ x: '19/09/2024', y: 0 }, { x: '23/09/2024', y: 1 }, { x: '30/09/2024', y: 1 }, { x: '10/04/2024', y: 1 }] }
+            { name: "MATTEO", data: [{ x: '19/09', y: 0 }, { x: '23/09', y: 0 }, { x: '30/09', y: 1 }, { x: '04/10', y: 2 }, { x: '07/10', y: 2 }] },
+            { name: "SIMONE", data: [{ x: '19/09', y: 0 }, { x: '23/09', y: 1 }, { x: '30/09', y: 1 }, { x: '04/04', y: 1 }, { x: '07/10', y: 2 }] }
 
         ],
         yaxis: {
@@ -250,6 +250,7 @@ function createMultiLineChart() {
         },
         xaxis: {
             //type: 'datetime',
+            offsetY: 30,
             labels: {
                 format: 'dd/MM',
                 style: {
