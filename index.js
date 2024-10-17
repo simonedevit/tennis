@@ -36,6 +36,12 @@ const matches = [
         duration: "01:46:15",
         kcal: 1016
     },
+    {
+        date: "14/10/2024",
+        sets: [{ result: [4, 6], tieBreak: false }, { result: [6, 6], tieBreak: [2,7] }],
+        duration: "02:04:07",
+        kcal: 1312
+    },
 ];
 
 function getSetsScore(sets) {
@@ -242,8 +248,8 @@ function createMultiLineChart() {
 
     const options = {
         series: [
-            { name: "MATTEO", data: [{ x: '19/09', y: 0 }, { x: '23/09', y: 0 }, { x: '30/09', y: 1 }, { x: '04/10', y: 2 }, { x: '07/10', y: 2 }, { x: '11/10', y: 3 }] },
-            { name: "SIMONE", data: [{ x: '19/09', y: 0 }, { x: '23/09', y: 1 }, { x: '30/09', y: 1 }, { x: '04/04', y: 1 }, { x: '07/10', y: 2 }, { x: '11/10', y: 2 }] }
+            { name: "MATTEO", data: [{ x: '19/09', y: 0 }, { x: '23/09', y: 0 }, { x: '30/09', y: 1 }, { x: '04/10', y: 2 }, { x: '07/10', y: 2 }, { x: '11/10', y: 3 },  { x: '14/10', y: 3 }] },
+            { name: "SIMONE", data: [{ x: '19/09', y: 0 }, { x: '23/09', y: 1 }, { x: '30/09', y: 1 }, { x: '04/04', y: 1 }, { x: '07/10', y: 2 }, { x: '11/10', y: 2 },  { x: '14/10', y: 3 }] }
 
         ],
         yaxis: {
