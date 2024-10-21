@@ -270,7 +270,7 @@ function createRadarChart(isPlayer1) {
             show: false,
         },
         xaxis: {
-            categories: ['SERVIZIO', 'SMASH', 'ROVESCIO', 'SMORZATA', 'VOLEE', 'DIRETTO'],
+            categories: ['SERVIZIO', 'SMASH', 'ROVESCIO', 'SMORZATA', 'VOLEE', 'DIRITTO'],
             labels: {
                 show: true,
                 style: {
