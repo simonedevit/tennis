@@ -1,6 +1,12 @@
-const namePlayer1 = 'MATTEO';
-const namePlayer2 = 'SIMONE';
+const player1 = {
+    name: 'MATTEO',
+    radar: { serve: 90, smash: 80, backhand: 60, dropShot: 50, volley: 60, forehand: 70 }
+}
 
+const player2 = {
+    name: 'SIMONE',
+    radar: { serve: 70, smash: 50, backhand: 70, dropShot: 80, volley: 65, forehand: 90 }
+}
 
 function convertDateFormat(dateString) {
     const [day, month] = dateString.split('/');
@@ -256,9 +262,11 @@ function createRadarChart(isPlayer1) {
         },
         series: [{
             name: 'sales',
-            data: isPlayer1 ? [81, 55, 72, 52, 65, 77] : [69, 45, 79, 74, 50, 87]
+            data: Object.values((isPlayer1 ? player1 : player2).radar)
         }],
         yaxis: {
+            stepSize: 10,
+            max: 100,
             show: false,
         },
         xaxis: {
@@ -335,8 +343,8 @@ function init(isPlayer1) {
     const info = getInfo();
     const {wins, draws, loses} = isPlayer1 ? info.player1 : info.player2;
     const raceSeries = [
-        { name: namePlayer1, data: info.player1.race },
-        { name: namePlayer2, data: info.player2.race }
+        { name: player1.name, data: info.player1.race },
+        { name: player2.name, data: info.player2.race }
     ]
     //const total = matches.length;
     setInfo(wins, draws, loses);
