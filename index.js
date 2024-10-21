@@ -1,3 +1,12 @@
+const namePlayer1 = 'MATTEO';
+const namePlayer2 = 'SIMONE';
+
+
+function convertDateFormat(dateString) {
+    const [day, month] = dateString.split('/');
+    return `${day}/${month}`;
+}
+
 // Matt posizione 0 (player1), Simo posizione 1
 const matches = [
     {
@@ -38,9 +47,15 @@ const matches = [
     },
     {
         date: "14/10/2024",
-        sets: [{ result: [4, 6], tieBreak: false }, { result: [6, 6], tieBreak: [2,7] }],
+        sets: [{ result: [4, 6], tieBreak: false }, { result: [6, 6], tieBreak: [2, 7] }],
         duration: "02:04:07",
         kcal: 1312
+    },
+    {
+        date: "17/10/2024",
+        sets: [{ result: [6, 6], tieBreak: [4, 7] }, { result: [2, 6], tieBreak: false }],
+        duration: "01:49:35",
+        kcal: 1162
     },
 ];
 
@@ -57,10 +72,22 @@ function getSetsScore(sets) {
     }, '')
 }
 
-function getInfo(isPlayer1) {
-    let wins = [];
-    let draws = [];
-    let loses = [];
+
+function getInfo() {
+
+    const player1 = {
+        wins: [],
+        draws: [],
+        loses: [],
+        race: []
+    }
+
+    const player2 = {
+        wins: [],
+        draws: [],
+        loses: [],
+        race: []
+    }
 
     matches.forEach(match => {
         let setsPlayer1 = 0;
@@ -79,26 +106,31 @@ function getInfo(isPlayer1) {
                 setsPlayer2++;
             }
         })
-        if (setsPlayer1 === setsPlayer2) {
-            draws.push({
-                date: match.date,
-                score: getSetsScore(match.sets)
-            })
-        } else if (setsPlayer1 > setsPlayer2) {
-            wins.push({
-                date: match.date,
-                score: getSetsScore(match.sets)
-            })
-        } else {
-            loses.push({
-                date: match.date,
-                score: getSetsScore(match.sets)
-            })
+        const result = {
+            date: match.date,
+            score: getSetsScore(match.sets)
         }
+        // draw
+        if (setsPlayer1 === setsPlayer2) {
+            player1.draws.push(result);
+            player2.draws.push(result);
+            // player 1 wins
+        } else if (setsPlayer1 > setsPlayer2) {
+            player1.wins.push(result);
+            player2.loses.push(result);
+            // player 2 wins
+        } else {
+            player2.wins.push(result);
+            player1.loses.push(result);
+        }
+        player1.race.push({ x: convertDateFormat(match.date), y: player1.wins.length });
+        player2.race.push({ x: convertDateFormat(match.date), y: player2.wins.length });
+
     })
-    if (isPlayer1) {
-        return [wins, draws, loses];
-    } else return [loses, draws, wins];
+    return {
+        player1,
+        player2
+    }
 }
 
 /*function getPercentage(value, total) {
@@ -244,14 +276,10 @@ function createRadarChart(isPlayer1) {
     new ApexCharts(document.getElementById("radar-chart"), options).render();
 }
 
-function createMultiLineChart() {
+function createMultiLineChart(series) {
 
     const options = {
-        series: [
-            { name: "MATTEO", data: [{ x: '19/09', y: 0 }, { x: '23/09', y: 0 }, { x: '30/09', y: 1 }, { x: '04/10', y: 2 }, { x: '07/10', y: 2 }, { x: '11/10', y: 3 },  { x: '14/10', y: 3 }] },
-            { name: "SIMONE", data: [{ x: '19/09', y: 0 }, { x: '23/09', y: 1 }, { x: '30/09', y: 1 }, { x: '04/04', y: 1 }, { x: '07/10', y: 2 }, { x: '11/10', y: 2 },  { x: '14/10', y: 3 }] }
-
-        ],
+        series,
         yaxis: {
             stepSize: 1,
             labels: {
@@ -304,11 +332,15 @@ function createMultiLineChart() {
 }
 
 function init(isPlayer1) {
-    const [wins, draws, loses] = getInfo(isPlayer1);
-    console.log(wins, draws, loses);
-    const total = matches.length;
+    const info = getInfo();
+    const {wins, draws, loses} = isPlayer1 ? info.player1 : info.player2;
+    const raceSeries = [
+        { name: namePlayer1, data: info.player1.race },
+        { name: namePlayer2, data: info.player2.race }
+    ]
+    //const total = matches.length;
     setInfo(wins, draws, loses);
     createPieChart(wins.length, draws.length, loses.length);
     createRadarChart(isPlayer1);
-    createMultiLineChart();
+    createMultiLineChart(raceSeries);
 }
