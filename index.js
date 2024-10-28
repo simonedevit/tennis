@@ -63,6 +63,12 @@ const matches = [
         duration: "01:49:35",
         kcal: 1162
     },
+    {
+        date: "23/10/2024",
+        sets: [{ result: [6, 2], tieBreak: false }, { result: [2, 6], tieBreak: false }, { result: [6, 1], tieBreak: false }],
+        duration: "01:54:30",
+        kcal: 1300
+    },
 ];
 
 function getSetsScore(sets) {
