@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Tennis - Simone</title>
+  <title>Tennis - Matteo</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -14,17 +14,26 @@
 
 <body>
   <img src="matteo.png" alt="Matteo">
-  <div class="wrapper">
+  <h4 style="margin:0px">TROFEI</h4>
+  <div class="info-container">
+    <ul>
+      <li class="info"><a href="trofei/racale-garros/index.html">RACALE GARROS</a>: 0</li>
+      <li class="info"><a href="trofei/melissano-open/index.html">MELISSANO OPEN</a>: 0</li>
+    </ul>
   </div>
-  <h4 style="margin-top:0px;">STORICO PARTITE</h4>
+  <h4>STORICO PARTITE</h4>
   <div id="pie-chart"></div>
-  <ul id="wins" class="info-container"></ul>
-  <ul id="draws" class="info-container" style="display: none;"></ul>
-  <ul id="loses" class="info-container" style="display: none;"></ul>
+  <div class="info-container">
+  <ul id="wins" ></ul>
+  <ul id="draws" style="display: none;"></ul>
+  <ul id="loses" style="display: none;"></ul>
+  </div>
   <h4>SKILLS</h4>
   <div id="radar-chart"></div>
   <h4 style="margin-top: 0px;">RACE</h4>
-  <div id="multiline-chart"></div>
+  <div id="race-chart"></div>
+  <h4 style="margin-top: 0px;">CALORIE E DURATA</h4>
+  <div id="kcals-and-durations-chart"></div>
 </body>
 
 </html>

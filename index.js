@@ -13,6 +13,17 @@ function convertDateFormat(dateString) {
     return `${day}/${month}`;
 }
 
+function convertTimeToSeconds(time) {
+    const [hours, minutes, seconds] = time.split(':').map(Number);
+    return hours * 3600 + minutes * 60 + seconds;
+}
+
+function convertSecondsToTime(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+}
+
 // Matt posizione 0 (player1), Simo posizione 1
 const matches = [
     {
@@ -48,8 +59,8 @@ const matches = [
     {
         date: "11/10/2024",
         sets: [{ result: [7, 5], tieBreak: false }, { result: [6, 2], tieBreak: false }],
-        duration: "01:46:15",
-        kcal: 1016
+        duration: "01:14:30",
+        kcal: 891
     },
     {
         date: "14/10/2024",
@@ -74,7 +85,7 @@ const matches = [
         sets: [{ result: [4, 6], tieBreak: false }, { result: [4, 6], tieBreak: false }],
         duration: "01:43:19",
         kcal: 1093
-    },
+    }
 ];
 
 function getSetsScore(sets) {
@@ -105,6 +116,12 @@ function getInfo() {
         draws: [],
         loses: [],
         race: []
+    }
+
+    const kcalsAndDuration = {
+        kcals: [],
+        durations: [],
+        dates: []
     }
 
     matches.forEach(match => {
@@ -141,13 +158,21 @@ function getInfo() {
             player2.wins.push(result);
             player1.loses.push(result);
         }
-        player1.race.push({ x: convertDateFormat(match.date), y: player1.wins.length });
-        player2.race.push({ x: convertDateFormat(match.date), y: player2.wins.length });
 
+        const date = convertDateFormat(match.date);
+        // race
+        player1.race.push({ x: date, y: player1.wins.length });
+        player2.race.push({ x: date, y: player2.wins.length });
+
+        // kcals and duration
+        kcalsAndDuration.kcals.push(match.kcal);
+        kcalsAndDuration.durations.push(convertTimeToSeconds(match.duration));
+        kcalsAndDuration.dates.push(date);
     })
     return {
         player1,
-        player2
+        player2,
+        kcalsAndDuration
     }
 }
 
@@ -296,7 +321,7 @@ function createRadarChart(isPlayer1) {
     new ApexCharts(document.getElementById("radar-chart"), options).render();
 }
 
-function createMultiLineChart(series) {
+function createRaceChart(series) {
 
     const options = {
         series,
@@ -312,7 +337,9 @@ function createMultiLineChart(series) {
             //type: 'datetime',
             offsetY: 30,
             labels: {
-                format: 'dd/MM',
+                rotate: -45,
+                rotateAlways: false,
+                //format: 'dd/MM',
                 style: {
                     fontSize: '30px'
                 }
@@ -348,19 +375,98 @@ function createMultiLineChart(series) {
         },
     };
 
-    new ApexCharts(document.getElementById("multiline-chart"), options).render();
+    new ApexCharts(document.getElementById("race-chart"), options).render();
+}
+
+function createKcalsAndDurationsChart(kcals, durations, dates) {
+    const options = {
+        series: [{
+            name: 'DURATA (h)',
+            type: 'column',
+            data: durations
+        }, {
+            name: 'CALORIE (kcal)',
+            type: 'line',
+            data: kcals
+        }],
+        chart: {
+            type: 'line',
+            zoom: {
+                enabled: false
+            },
+            toolbar: false
+        },
+        stroke: {
+            width: [0, 4]
+        },
+        dataLabels: {
+            enabled: true,
+            enabledOnSeries: [1],
+            style: {
+                fontSize: '30px',
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                fontWeight: 'bold',
+                colors: undefined
+            },
+        },
+        labels: dates,
+        xaxis: {
+            //type: 'datetime',
+            offsetY: 30,
+            labels: {
+                rotate: -45,
+                rotateAlways: true,
+                //format: 'dd/MM',
+                style: {
+                    fontSize: '30px'
+                }
+            },
+        },
+        yaxis: [{
+            labels: {
+                formatter: (seconds) => {
+                    return convertSecondsToTime(seconds)
+                },
+                style: {
+                    fontSize: '30px'
+                }
+            },
+        }, , {
+            max: Math.max(...kcals),
+            labels: {
+                style: {
+                    fontSize: '30px'
+                },
+            },
+            opposite: true,
+
+        }],
+        legend: {
+            offsetY: 10,
+            position: 'bottom',
+            fontSize: '40px',
+            markers: {
+                size: 20,
+                offsetX: 0,
+            }
+        },
+    };
+    new ApexCharts(document.getElementById("kcals-and-durations-chart"), options).render();
+
 }
 
 function init(isPlayer1) {
     const info = getInfo();
-    const {wins, draws, loses} = isPlayer1 ? info.player1 : info.player2;
+    const { wins, draws, loses } = isPlayer1 ? info.player1 : info.player2;
     const raceSeries = [
         { name: player1.name, data: info.player1.race },
         { name: player2.name, data: info.player2.race }
     ]
+    const { kcalsAndDuration: { kcals, durations, dates } } = info;
     //const total = matches.length;
     setInfo(wins, draws, loses);
     createPieChart(wins.length, draws.length, loses.length);
     createRadarChart(isPlayer1);
-    createMultiLineChart(raceSeries);
+    createRaceChart(raceSeries);
+    createKcalsAndDurationsChart(kcals, durations, dates);
 }

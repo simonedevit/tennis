@@ -1,0 +1,26 @@
+body {
+    margin: 20px;
+}
+
+.main-title {
+    text-align: center;
+    font-size: 80px;
+}
+
+.title {
+    font-size: 60px;
+    font-weight: bold;
+    line-height: 0px;
+}
+
+.container {
+    display: flex;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    justify-content: center;
+}
+
+img {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
