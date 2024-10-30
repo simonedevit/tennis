@@ -206,19 +206,19 @@ function setInfo(wins, draws, loses) {
 function showMatchesInfo(seriesIndex) {
     switch (seriesIndex) {
         case 0:
-            document.getElementById("wins").style.display = "flex";
+            document.getElementById("wins").style.display = "block";
             document.getElementById("draws").style.display = "none";
             document.getElementById("loses").style.display = "none";
             break;
         case 1:
             document.getElementById("wins").style.display = "none";
-            document.getElementById("draws").style.display = "flex";
+            document.getElementById("draws").style.display = "block";
             document.getElementById("loses").style.display = "none";
             break;
         case 2:
             document.getElementById("wins").style.display = "none";
             document.getElementById("draws").style.display = "none";
-            document.getElementById("loses").style.display = "flex";
+            document.getElementById("loses").style.display = "block";
             break;
     }
 }
