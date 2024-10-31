@@ -85,6 +85,12 @@ const matches = [
         sets: [{ result: [4, 6], tieBreak: false }, { result: [4, 6], tieBreak: false }],
         duration: "01:43:19",
         kcal: 1093
+    },
+    {
+        date: "31/10/2024",
+        sets: [{ result: [6, 2], tieBreak: false }, { result: [2, 6], tieBreak: false }],
+        duration: "01:26:25",
+        kcal: 930
     }
 ];
 
