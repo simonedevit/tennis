@@ -8,6 +8,12 @@ const player2 = {
     radar: { serve: 70, smash: 50, backhand: 70, dropShot: 80, volley: 65, forehand: 90 }
 }
 
+const Court = {
+    GRASS: 0,
+    CLAY: 1,
+    HARD: 2
+};
+
 function convertDateFormat(dateString) {
     const [day, month] = dateString.split('/');
     return `${day}/${month}`;
@@ -29,48 +35,56 @@ const matches = [
     {
         date: "19/09/2024",
         sets: [{ result: [6, 2], tieBreak: false }, { result: [4, 6], tieBreak: false }],
+        court: Court.HARD,
         duration: "01:48:19",
         kcal: 909
     },
     {
         date: "23/09/2024",
         sets: [{ result: [6, 0], tieBreak: false }, { result: [6, 6], tieBreak: [4, 7] }, { result: [3, 6], tieBreak: false }],
+        court: Court.HARD,
         duration: "02:03:28",
         kcal: 1059
     },
     {
         date: "30/09/2024",
         sets: [{ result: [6, 1], tieBreak: false }, { result: [6, 3], tieBreak: false }],
+        court: Court.HARD,
         duration: "01:25:58",
         kcal: 1097
     },
     {
         date: "04/10/2024",
         sets: [{ result: [6, 3], tieBreak: false }, { result: [4, 6], tieBreak: false }, { result: [6, 2], tieBreak: false }],
+        court: Court.HARD,
         duration: "02:09:34",
         kcal: 1375
     },
     {
         date: "07/10/2024",
         sets: [{ result: [3, 6], tieBreak: false }, { result: [3, 6], tieBreak: false }],
+        court: Court.HARD,
         duration: "01:46:15",
         kcal: 1016
     },
     {
         date: "11/10/2024",
         sets: [{ result: [7, 5], tieBreak: false }, { result: [6, 2], tieBreak: false }],
+        court: Court.HARD,
         duration: "01:14:30",
         kcal: 891
     },
     {
         date: "14/10/2024",
         sets: [{ result: [4, 6], tieBreak: false }, { result: [6, 6], tieBreak: [2, 7] }],
+        court: Court.HARD,
         duration: "02:04:07",
         kcal: 1312
     },
     {
         date: "17/10/2024",
         sets: [{ result: [6, 6], tieBreak: [4, 7] }, { result: [2, 6], tieBreak: false }],
+        court: Court.HARD,
         duration: "01:49:35",
         kcal: 1162
     },
@@ -83,14 +97,23 @@ const matches = [
     {
         date: "28/10/2024",
         sets: [{ result: [4, 6], tieBreak: false }, { result: [4, 6], tieBreak: false }],
+        court: Court.HARD,
         duration: "01:43:19",
         kcal: 1093
     },
     {
         date: "31/10/2024",
         sets: [{ result: [6, 2], tieBreak: false }, { result: [2, 6], tieBreak: false }],
+        court: Court.CLAY,
         duration: "01:26:25",
         kcal: 930
+    },
+    {
+        date: "04/11/2024",
+        sets: [{ result: [7, 5], tieBreak: false }, { result: [3, 6], tieBreak: false }],
+        court: Court.HARD,
+        duration: "02:05:31",
+        kcal: 1153
     }
 ];
 
