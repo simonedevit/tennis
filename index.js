@@ -114,6 +114,13 @@ const matches = [
         court: Court.HARD,
         duration: "02:05:31",
         kcal: 1153
+    },
+    {
+        date: "28/11/2024",
+        sets: [{ result: [6, 4], tieBreak: false }, { result: [6, 3], tieBreak: false }],
+        court: Court.HARD,
+        duration: "01:36:32",
+        kcal: 1015
     }
 ];
 
