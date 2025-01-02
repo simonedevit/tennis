@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Tennis - Edoardo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="index-edoardo.js"></script>
+<script>
+  window.onload = () => init(true);
+</script>
+</head>
+
+<body>
+  <img src="edoardo.png" alt="Edoardo">
+  <h4>STORICO PARTITE</h4>
+  <div id="pie-chart"></div>
+  <div class="info-container">
+    <ul id="wins"></ul>
+    <ul id="draws" style="display: none;"></ul>
+    <ul id="loses" style="display: none;"></ul>
+  </div>
+  <h4>SKILLS</h4>
+  <div id="radar-chart"></div>
+  <h4 style="margin-top: 0px;">RACE</h4>
+  <div id="race-chart"></div>
+  <h4>CALORIE</h4>
+  <div id="kcals-and-durations-chart"></div>
+</body>
+
+</html>
