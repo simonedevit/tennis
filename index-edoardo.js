@@ -1,10 +1,10 @@
 const player1 = {
     name: 'EDOARDO',
-    radar: { serve: 0, smash: 0, backhand: 0, dropShot: 0, volley: 0, forehand: 0 }
+    radar: { serve: 80, smash: 75, backhand: 70, dropShot: 85, volley: 85, forehand: 90 }
 }
 
 const player2 = {
-    name: 'SIMONE',
+    name: 'ANDREA',
     radar: { serve: 70, smash: 50, backhand: 70, dropShot: 80, volley: 65, forehand: 90 }
 }
 
@@ -30,7 +30,7 @@ function convertSecondsToTime(seconds) {
     return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
 }
 
-// Eodardo posizione 0 (player1), Simo posizione 1
+// Eodardo posizione 0 (player1), Andrea posizione 1
 const matches = [
     {
         date: "19/09/2024",
@@ -45,6 +45,13 @@ const matches = [
         court: Court.HARD,
         duration: "02:03:28",
         kcal: 1059
+    },
+    {
+        date: "25/09/2024",
+        sets: [{ result: [6, 0], tieBreak: false }, { result: [6, 3], tieBreak: false }],
+        court: Court.HARD,
+        duration: "01:43:21",
+        kcal: 1002
     },
 ];
 
