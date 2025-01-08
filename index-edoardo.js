@@ -5,7 +5,7 @@ const player1 = {
 
 const player2 = {
     name: 'ANDREA',
-    radar: { serve: 70, smash: 50, backhand: 70, dropShot: 80, volley: 65, forehand: 90 }
+    radar: { serve: 87, smash: 70, backhand: 70, dropShot: 80, volley: 75, forehand: 90 }
 }
 
 const Court = {
